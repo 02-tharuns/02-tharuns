@@ -4,70 +4,38 @@
 
 <br><br>
 
-<img src="https://img.shields.io/badge/Edge%20AI-2BC4B8?style=for-the-badge&logoColor=white" alt="Edge AI"/>
-<img src="https://img.shields.io/badge/Predictive%20Maintenance-F5A623?style=for-the-badge&logoColor=1E1638" alt="Predictive Maintenance"/>
-<img src="https://img.shields.io/badge/Industrial%20IoT-7C5CE8?style=for-the-badge&logoColor=white" alt="Industrial IoT"/>
+<img src="assets/avatar.png" width="132" height="132" alt="Portrait of Tharun Subramanya"/>
 
 </div>
 
 <br>
 
-## Who I am
+## 🧭 The Journey
 
-An **Industrial and Production Engineering** graduate who moved into applied AI. My first degree taught me to think in tolerances, failure modes and throughput. An edge computing course during my Master's turned that into something specific: latency budgets, sensor noise, and inference on constrained hardware. Not AI in the abstract, but **AI that has to survive contact with a physical machine.**
+I didn't start in AI. I started in **Industrial & Production Engineering** thinking in tolerances and failure modes, long before I wrote a line of Python. An edge computing course during my Master's changed the trajectory: it introduced me to real-world deployment constraints like latency budgets, sensor noise, compute-at-the-edge trade-offs and I realized that was the actual problem I wanted to work on.
 
-Everything I have shipped since is automotive diagnostics. Brake and wheel end condition monitoring. CAN bus fault classification. Bearing vibration. Buzz, squeak and rattle detection. The question is the same every time: **how do you get a model to tell the truth about a physical system before it fails?**
-
-<br>
-
-## Where I am going
-
-> ### Industrial robotics and IIoT.
-> The move is deliberate rather than opportunistic.
-
-Predicting a bearing failure from vibration, telling real drift apart from a benign environmental shift, and holding inference inside a millisecond budget on constrained hardware are not automotive problems. They are **machine health problems**.
-
-A robot joint has a gearbox, a duty cycle and a thermal signature. A plant floor runs the same telemetry backbone as a test vehicle. I already own the sensor to decision half of that. What I am building now is the manipulator and plant floor half.
+That's the thread connecting everything below: an IoT temperature pipeline on a Raspberry Pi, a serverless digital twin on AWS, and now a full research push into **vehicle diagnostics and predictive maintenance**: brakes, bearings, buzz/squeak/rattle detection. Same question every time: *how do you get a model to tell the truth about a physical system before it fails?*
 
 <br>
 
-## What I am working toward
-
-| | Goal | How I am getting there |
-|:--:|---|---|
-| ![](https://img.shields.io/badge/01-2BC4B8?style=flat-square) | Joint level health monitoring for manipulators | Applying the brake and bearing diagnostics stack to gearbox and actuator signals |
-| ![](https://img.shields.io/badge/02-F5A623?style=flat-square) | Fluency in the industrial robotics stack | Manipulator kinematics, ROS 2, and the vocabulary of plant floor integration |
-| ![](https://img.shields.io/badge/03-7C5CE8?style=flat-square) | Deployment I can defend, not just demo | CI gated test suites, held out evaluation, and honest reported numbers |
-| ![](https://img.shields.io/badge/04-2BC4B8?style=flat-square) | Stronger data engineering | Closing a flagged SQL gap and pushing further into ETL and Spark |
-
-<br>
-
-## What I am building right now
+## 🔧 What I'm Building Right Now
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### ![](https://img.shields.io/badge/-2BC4B8?style=flat-square) Smart Brake and Wheel End Monitor
+### Smart Brake & Wheel-End Condition Monitor
 
-Physics first brake diagnostics, built with a collaborator. My half: a lumped capacitance rotor thermal simulator with speed dependent convection and radiation, residual caliper drag torque injection across four severity levels, and a Newtonian cooling curve extractor that **inverts torque from the cooling asymptote**, landing within **~5% of ground truth** on severe drag cases.
-
-Physical inversion over black box classification, deliberately. An interpretable torque estimate tells a service engineer a diagnostic story that a confidence score cannot.
-
-`18 test suite` `ruff` `pytest` `coverage` `CI gated`
+A physics-first brake diagnostic system, built with a collaborator. My half: a lumped-capacitance rotor thermal simulator (speed-dependent convection/radiation), residual caliper drag-torque injection across four severity levels, dual-wheel FL/FR simulation, and a Newtonian cooling-curve feature extractor that inverts torque from the cooling asymptote. Currently landing within **~5% of ground truth** on severe-drag cases. 18-test suite, CI-gated with `ruff` + `pytest` + coverage.
 
 </td>
 <td width="50%" valign="top">
 
-### ![](https://img.shields.io/badge/-F5A623?style=flat-square) DARE-PM
+### DARE-PM
 
-*Drift Aware, Event Triggered Edge Predictive Maintenance*
+*Drift-Aware, Event-Triggered Edge Predictive Maintenance*
 
-14 time and frequency domain features every 0.1 s from vibration and acoustic streams, on device. One-Class SVM novelty detection with ADWIN drift diagnosis cut **false adaptations from 49.87% to under 1%** at F1 up to 0.80, reaching **88.4% data reduction and 3.8 ms inference** across 48 controlled experiments.
-
-Reframed under faculty mentorship toward vehicle BSR detection. The open problem: ADWIN alone cannot tell a real fault from a benign environmental shift, so I am building a multi signal arbitration layer.
-
-`One-Class SVM` `ADWIN` `MQTT` `Docker` `InfluxDB` `Grafana`
+Reframed with faculty mentorship as a vehicle BSR (buzz/squeak/rattle) detection system. Core idea: ADWIN drift detection *alone* can't tell you whether a signal shift is a real fault or just a benign environmental change, so I'm building a multi-signal layer (per-feature ADWIN + rolling confidence + cross-sensor majority voting) that resolves that ambiguity before it reaches the controller.
 
 </td>
 </tr>
@@ -75,98 +43,113 @@ Reframed under faculty mentorship toward vehicle BSR detection. The open problem
 
 <br>
 
-## How I work
+## ⚙️ How I Actually Work
 
-> I default to the next concrete step, not open ended reflection. Milestones over meandering.
+> I default to the next concrete step, not open-ended reflection.
 >
-> I run several learning tracks in parallel rather than sequencing them.
+> I run multiple learning tracks in parallel: DSA, ML theory, systems design, domain knowledge, rather than sequencing them.
 >
-> I build domain fluency alongside implementation. You cannot model brake drag torque well without understanding what a caliper is actually doing.
->
-> When a research direction hits literature saturation, that is a signal to pivot early, not a reason to force it.
+> I build domain fluency *alongside* implementation. You can't model brake drag torque well if you don't understand what a caliper is actually doing.
 
 <br>
 
-## Lessons from the trenches
+## 🧰 Tech I Reach For
 
-<details open>
-<summary><b>A running log of things that broke and taught me something</b></summary>
+**Languages & Data**
+<br>
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white)
+![R](https://img.shields.io/badge/R-276DC3?style=for-the-badge&logo=r&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+
+**Machine Learning & AI**
+<br>
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-0B6E4F?style=for-the-badge&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
+![NLTK](https://img.shields.io/badge/NLTK-3776AB?style=for-the-badge&logoColor=white)
+
+**AI / LLM Tooling**
+<br>
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
+![Anthropic](https://img.shields.io/badge/Anthropic-191919?style=for-the-badge&logoColor=white)
+![HuggingFace](https://img.shields.io/badge/🤗%20Hugging%20Face-FFD21E?style=for-the-badge&logoColor=black)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logoColor=white)
+![LlamaIndex](https://img.shields.io/badge/LlamaIndex-2F2F2F?style=for-the-badge&logoColor=white)
+
+**Data Engineering**
+<br>
+![Apache Spark](https://img.shields.io/badge/Apache%20Spark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
+![PySpark](https://img.shields.io/badge/PySpark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
+![Airflow](https://img.shields.io/badge/Apache%20Airflow-017CEE?style=for-the-badge&logo=apacheairflow&logoColor=white)
+
+**Cloud & Databases**
+<br>
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)
+![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![InfluxDB](https://img.shields.io/badge/InfluxDB-22ADF6?style=for-the-badge&logo=influxdb&logoColor=white)
+
+**Hardware / IoT**
+<br>
+![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi%205-A22846?style=for-the-badge&logo=raspberrypi&logoColor=white)
+![MQTT](https://img.shields.io/badge/MQTT-660066?style=for-the-badge&logo=mqtt&logoColor=white)
+
+**Visualization & DevOps**
+<br>
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![Tableau](https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=tableau&logoColor=white)
+![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)
+![Grafana](https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
 
 <br>
 
-- **ADWIN alone cannot separate true concept drift from benign environmental shift.** You need a second signal to arbitrate. This one reshaped an entire project.
-- **Physical inversion beats black box classification for credibility.** An interpretable torque estimate from a cooling curve tells a diagnostic story that a classifier score cannot.
-- **A random split leaks on video data.** Consecutive frames of one vehicle land on both sides of the boundary. A group level split by video reports a lower number that is actually true.
-- **Validate each layer independently before end to end testing.** Sensor, broker, subscriber, storage, alert. Skip to the full pipeline and you will spend twice as long finding which link broke.
-- **AWS region mismatches** between IoT Core, Lambda and SES fail silently. Match regions across every service, not only the ones you touched last.
-- **Certificate filename mismatches** in IoT auth scripts are the classic "it worked yesterday" bug. Name things explicitly.
-- **Unit conversion bugs are sneakier than they look.** A Celsius to Fahrenheit error that always trips your threshold passes every casual test and fails in production.
+## 🚀 Projects Worth a Look
 
-</details>
-
-<br>
-
-## Projects worth a look
-
-| | Project | What it does |
-|:--:|---|---|
-| ![](https://img.shields.io/badge/-2BC4B8?style=flat-square) | **Smart Brake and Wheel End Monitor** | Rotor thermal simulation, drag torque injection, cooling curve torque inversion within ~5% |
-| ![](https://img.shields.io/badge/-F5A623?style=flat-square) | **DARE-PM** | Drift aware edge predictive maintenance. One-Class SVM with ADWIN, false adaptations 49.87% to under 1%, 3.8 ms inference |
-| ![](https://img.shields.io/badge/-2BC4B8?style=flat-square) | **CANalyse Edge** | CAN and CAN-FD decoding into named signals via DBC, Random Forest condition model, SOVD inspired FastAPI diagnostic service |
-| ![](https://img.shields.io/badge/-F5A623?style=flat-square) | **Edge Sensing and Digital Twin** | Raspberry Pi with Mosquitto MQTT to a Python subscriber, extended to AWS IoT Core, Lambda and SES on real hardware |
-| ![](https://img.shields.io/badge/-7C5CE8?style=flat-square) | **Supply Chain Risk Pipeline** | Late delivery prediction over 180K orders. One hot dimensionality cut from 64K features to 339, recall raised 57.5% to 78.8% |
-| ![](https://img.shields.io/badge/-7C5CE8?style=flat-square) | **Chappie** | Retrieval chatbot over my own documents, running entirely in browser. BM25, six guardrails, extractive answers, 69 case eval suite in CI |
+<table>
+<tr><th align="left">Project</th><th align="left">What it does</th></tr>
+<tr><td><b>Smart Brake &amp; Wheel-End Condition Monitor</b></td><td>Physics-based brake diagnostic system: thermal simulation, drag-torque injection, cooling-curve torque inversion</td></tr>
+<tr><td><b>DARE-PM</b></td><td>Drift-aware edge predictive maintenance for vehicle BSR detection: ADWIN with cross-sensor voting</td></tr>
+<tr><td><b>IoT Sensing Pipeline</b></td><td>Raspberry Pi + DHT sensors + MQTT (Mosquitto) → Python subscriber → CSV storage → matplotlib visualization</td></tr>
+<tr><td><b>Digital Twin + Serverless Alerting</b></td><td>AWS IoT Core + Lambda + SES temperature alert system running on physical Raspberry Pi hardware</td></tr>
+</table>
 
 <br>
 
-## Tech I reach for
+## 📍 Right Now, I'm
 
-**Core**
+🔨 Building the Random Forest classifier + diagnostic evidence card for the Smart Brake project
 
-![Python](https://img.shields.io/badge/Python-2BC4B8?style=for-the-badge&logo=python&logoColor=white)
-![SQL](https://img.shields.io/badge/SQL-2BC4B8?style=for-the-badge&logo=postgresql&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-2BC4B8?style=for-the-badge&logo=numpy&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-2BC4B8?style=for-the-badge&logo=pandas&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-2BC4B8?style=for-the-badge&logo=scikitlearn&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-2BC4B8?style=for-the-badge&logo=pytorch&logoColor=white)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-2BC4B8?style=for-the-badge&logo=tensorflow&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-2BC4B8?style=for-the-badge&logo=opencv&logoColor=white)
+📖 Grinding NeetCode 150, 3Blue1Brown linear algebra, and a self-directed GenAI/LLM track (Hugging Face, LangChain, RAG)
 
-**Edge and IIoT**
+🎯 Filling a flagged SQL gap and pushing further into ETL/Spark
 
-![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi%205-F5A623?style=for-the-badge&logo=raspberrypi&logoColor=1E1638)
-![MQTT](https://img.shields.io/badge/MQTT%20%2F%20Mosquitto-F5A623?style=for-the-badge&logo=mqtt&logoColor=1E1638)
-![AWS IoT](https://img.shields.io/badge/AWS%20IoT%20Core-F5A623?style=for-the-badge&logo=amazonaws&logoColor=1E1638)
-![InfluxDB](https://img.shields.io/badge/InfluxDB-F5A623?style=for-the-badge&logo=influxdb&logoColor=1E1638)
-![Grafana](https://img.shields.io/badge/Grafana-F5A623?style=for-the-badge&logo=grafana&logoColor=1E1638)
-
-**Ship it**
-
-![Docker](https://img.shields.io/badge/Docker-7C5CE8?style=for-the-badge&logo=docker&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-7C5CE8?style=for-the-badge&logo=linux&logoColor=white)
-![Git](https://img.shields.io/badge/Git-7C5CE8?style=for-the-badge&logo=git&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-7C5CE8?style=for-the-badge&logo=githubactions&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-7C5CE8?style=for-the-badge&logo=fastapi&logoColor=white)
-![pytest](https://img.shields.io/badge/pytest-7C5CE8?style=for-the-badge&logo=pytest&logoColor=white)
-
-**Also used** · Spark and PySpark · Airflow · Azure · XGBoost · Hugging Face · LangChain · Power BI · Tableau · Plotly · R
+🚗 Learning the language of OEM vehicle diagnostics, one dataset at a time
 
 <br>
 
-## Most importantly
+## 💡 Most Importantly
 
-Debugging, implementation, documentation and editing. That is the job most days. Not the demo, the ten hours before it.
+Debugging, implementation, documentation, and editing. That's the job, most days. Not the demo, the ten hours before it.
 
 <br>
 
 <div align="center">
 
-## Let's connect
+## 📫 Let's Connect
 
-Automotive diagnostics, industrial robotics, edge AI, or anything with a gearbox and a duty cycle.
+Talk AI, edge computing, or anything with wheels and sensors on it.
 
-[![Gmail](https://img.shields.io/badge/tharunmysuru%40gmail.com-F5A623?style=for-the-badge&logo=gmail&logoColor=1E1638)](mailto:tharunmysuru@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/tharun--subramanya--p-2BC4B8?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/tharun-subramanya-p)
+[![Gmail](https://img.shields.io/badge/tharunmysuru%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:tharunmysuru@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/tharun--subramanya--p-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/tharun-subramanya-p)
 
 <br>
 
